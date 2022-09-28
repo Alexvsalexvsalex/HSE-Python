@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hse_python"
+version = "1.0"
+authors = [
+  { name="Alexvsalexvsalex", email="alexxxshishkin@yandex.ru" },
+]
+description = "Tasks from hse python course practices"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
