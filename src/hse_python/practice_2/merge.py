@@ -1,27 +1,18 @@
-from typing import List, Iterator
-from .utils import ArrayIterator
+from typing import List, Generator
+
+from .utils import ArrayIterator, check_all_in_array
 
 
-class ArraysMinimumIterator(Iterator[int]):
-    def __init__(self, arrays: List[List[int]]):
-        self.iterators: List[ArrayIterator] = list(map(lambda x: ArrayIterator(x), arrays))
-
-    def __next__(self) -> int:
-        if self.is_finished():
-            raise StopIteration
-
+def merge_generator(*arrays: List[int]) -> Generator[int, None, None]:
+    iterators = [ArrayIterator(x) for x in arrays]
+    while not check_all_in_array(iterators, lambda x: x.is_finished()):
         minimum_index = -1
-        for i, iterator in enumerate(self.iterators):
+        for i, iterator in enumerate(iterators):
             if not iterator.is_finished():
                 current_value = iterator.get()
-                if minimum_index == -1 or self.iterators[minimum_index].get() > current_value:
+                if minimum_index == -1 or iterators[minimum_index].get() > current_value:
                     minimum_index = i
-        result = self.iterators[minimum_index].get()
-        self.iterators[minimum_index].pop()
-        return result
-
-    def is_finished(self):
-        return all(map(lambda i: i.is_finished(), self.iterators))
+        yield iterators[minimum_index].pop()
 
 
 def is_sorted(array: List[int]):
@@ -31,4 +22,4 @@ def is_sorted(array: List[int]):
 def merge(first: List[int], second: List[int]) -> List[int]:
     if not is_sorted(first) or not is_sorted(second):
         raise RuntimeError("Function expects sorted arrays")
-    return list(ArraysMinimumIterator([first, second]))
+    return list(merge_generator(first, second))

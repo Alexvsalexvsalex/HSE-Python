@@ -1,22 +1,13 @@
-from typing import Iterable, List, Callable
+from typing import Iterable, List
+
 from .merge import merge
+from .utils import split_array
 
 
-def squared(a: Iterable[int]) -> List[int]:
-    return list(map(lambda x: x * x, a))
-
-
-def split(array: List[int], predicate: Callable[[int], bool]) -> (List[int], List[int]):
-    truth_array = []
-    lie_array = []
-    for elem in array:
-        if predicate(elem):
-            truth_array.append(elem)
-        else:
-            lie_array.append(elem)
-    return lie_array, truth_array
+def squared_array(a: Iterable[int]) -> List[int]:
+    return [x * x for x in a]
 
 
 def squares(s: List[int]) -> List[int]:
-    s1, s2 = split(s, lambda x: x > 0)
-    return merge(squared(reversed(s1)), squared(s2))
+    s1, s2 = split_array(s, lambda x: x > 0)
+    return merge(squared_array(reversed(s1)), squared_array(s2))

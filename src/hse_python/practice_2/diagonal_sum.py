@@ -1,5 +1,7 @@
 from typing import List
 
+from .utils import check_any_in_array
+
 
 def get_matrix_dimensions(matrix: List[List[int]]) -> (int, int):
     n = len(matrix)
@@ -7,7 +9,7 @@ def get_matrix_dimensions(matrix: List[List[int]]) -> (int, int):
         return 0, 0
 
     m = len(matrix[0])
-    if any(map(lambda x: len(x) != m, matrix)):
+    if check_any_in_array(matrix, lambda x: len(x) != m):
         raise RuntimeError(f"Rows of matrix should have same length")
 
     return n, m

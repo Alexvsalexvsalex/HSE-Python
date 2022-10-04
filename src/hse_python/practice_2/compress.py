@@ -1,9 +1,10 @@
 from typing import List
-from .utils import ArrayIterator
+
+from .utils import ArrayIterator, check_any_in_array
 
 
 def compress(s: List[str]) -> str:
-    if any(map(lambda x: len(x) != 1, s)):
+    if check_any_in_array(s, lambda x: len(x) != 1):
         raise RuntimeError("Function expects list of symbols")
     chunks = []
     iterator = ArrayIterator(s)
