@@ -1,5 +1,6 @@
 import unittest
 from hse_python.practice_2 import *
+from hse_python.errors import IllegalArgumentError
 
 
 class DiagonalSumTestCase(unittest.TestCase):
@@ -14,9 +15,9 @@ class DiagonalSumTestCase(unittest.TestCase):
         self.assertEqual(diagonal_sum([]), 0)
 
     def test_incorrect_matrix(self):
-        self.assertRaises(RuntimeError, diagonal_sum, [[]])
-        self.assertRaises(RuntimeError, diagonal_sum, [[1], [2, 3]])
-        self.assertRaises(RuntimeError, diagonal_sum, [[1, 2, 3], [4, 5, 6]])
+        self.assertRaises(IllegalArgumentError, diagonal_sum, [[]])
+        self.assertRaises(IllegalArgumentError, diagonal_sum, [[1], [2, 3]])
+        self.assertRaises(IllegalArgumentError, diagonal_sum, [[1, 2, 3], [4, 5, 6]])
 
 
 class MergeTestCase(unittest.TestCase):
@@ -25,7 +26,7 @@ class MergeTestCase(unittest.TestCase):
         self.assertEqual(merge([-4, 7], [1, 1, 1]), [-4, 1, 1, 1, 7])
 
     def test_incorrect_input(self):
-        self.assertRaises(RuntimeError, merge, [1, 0], [2, 3])
+        self.assertRaises(IllegalArgumentError, merge, [1, 0], [2, 3])
 
     def test_empty_array(self):
         self.assertEqual(merge([], [0, 2, 5]), [0, 2, 5])
@@ -38,7 +39,8 @@ class SquaresTestCase(unittest.TestCase):
         self.assertEqual(squares([-4, 4]), [16, 16])
 
     def test_incorrect_input(self):
-        self.assertRaises(RuntimeError, squares, [-1, 0, -2])
+        self.assertRaises(IllegalArgumentError, squares, [-2, 1, -1, 0])
+        self.assertRaises(IllegalArgumentError, squares, [-1, 0, -2])
 
     def test_empty_array(self):
         self.assertEqual(squares([]), [])
@@ -51,7 +53,7 @@ class CompressTestCase(unittest.TestCase):
         self.assertEqual(compress(["c", "c", "c"]), "c3")
 
     def test_incorrect_input(self):
-        self.assertRaises(RuntimeError, compress, ["0", "ab", "h"])
+        self.assertRaises(IllegalArgumentError, compress, ["0", "ab", "h"])
 
     def test_empty_array(self):
         self.assertEqual(compress([]), "")

@@ -1,11 +1,12 @@
 from typing import List
 
-from .utils import ArrayIterator, check_any_in_array
+from hse_python.errors import IllegalArgumentError
+from .array_utils import ArrayIterator, check_any_in_array
 
 
 def compress(s: List[str]) -> str:
     if check_any_in_array(s, lambda x: len(x) != 1):
-        raise RuntimeError("Function expects list of symbols")
+        raise IllegalArgumentError("Function expects list of symbols")
     chunks = []
     iterator = ArrayIterator(s)
     while not iterator.is_finished():
