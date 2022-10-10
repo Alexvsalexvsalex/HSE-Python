@@ -79,7 +79,7 @@ def make_task_paragraph(task: Task) -> str:
 
 
 def generate_task_markdown(task: Task) -> str:
-    return f"{make_hyperlink(task.title)}\n\n{make_task_paragraph(task)}"
+    return make_task_paragraph(task)
 
 
 def generate_package_markdown(package_title: str, tasks: List[Task]) -> str:
