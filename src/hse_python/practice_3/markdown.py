@@ -1,7 +1,18 @@
 # title Markdown
 # description
 # Создать markdown описание для выполненных задач
+#
+# Входные файлы должны удовлетворять структуре
+# ```
+# '# title <title>
+# '# description
+# '# <some number of lines with description>
+# '# end
+# '<code>
+# ```
+#
 # end
+import argparse
 import logging
 import os
 import sys
@@ -75,6 +86,7 @@ def make_table_of_contents(tasks: List[Task]) -> str:
 def make_task_paragraph(task: Task) -> str:
     return f'<a name="{make_correct_link(task.title)}"><h2>{task.title}</h2></a>\n' \
            f"{task.description}\n" \
+           f"### Solution:\n" \
            f"```python\n{task.code}```"
 
 
@@ -117,31 +129,21 @@ def to_markdown_package(input_package_path: str, output_filepath: str) -> None:
 
 
 if __name__ == '__main__':
-    if sys.argv == ["--help"]:
-        print("Application usage:\n"
-              "markdown.py <file|package> <input-path> <output-file>\n"
-              "\n"
-              "Input files must satisfy structure:\n"
-              "# title <title>\n"
-              "# description\n"
-              "# <some number of lines with description>\n"
-              "# end\n"
-              "<code>")
-        exit(0)
+    parser = argparse.ArgumentParser(
+        description='''Application creates markdown file for solved tasks''')
+    parser.add_argument('input_path', type=str, help='Path to file or package')
+    parser.add_argument('output_file', type=str, help='Output markdown file location')
+    args = parser.parse_args()
 
-    if len(sys.argv) != 4:
-        logging.error("Application usage:\nmarkdown.py <file|package> <input-path> <output-file>")
-        exit(1)
+    input_path = args.input_path
+    output_filepath = args.output_file
 
-    mode = sys.argv[1]
-    input_path = sys.argv[2]
-    output_filepath = sys.argv[3]
-    if mode == "file":
+    if os.path.isfile(input_path):
         logging.info("File markdown transform")
         to_markdown(input_path, output_filepath)
-    elif mode == "package":
+    elif os.path.isdir(input_path):
         logging.info("Package markdown transform")
         to_markdown_package(input_path, output_filepath)
     else:
-        logging.error(f"Unsupported transform type {mode}")
+        logging.error(f"Unrecognized input path")
         exit(1)

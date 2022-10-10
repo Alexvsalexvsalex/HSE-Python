@@ -9,6 +9,7 @@
 <a name="compress"><h2>Compress</h2></a>
 Сжать строку, заменив подотрезки одинаковых символов на пару <символ, число вхождений>
 
+### Solution:
 ```python
 from typing import List
 
@@ -34,6 +35,7 @@ def compress(s: List[str]) -> str:
 <a name="diagonal-sum"><h2>Diagonal sum</h2></a>
 Посчитать сумму диагональных элементов матрицы
 
+### Solution:
 ```python
 from typing import List
 
@@ -71,8 +73,10 @@ def diagonal_sum(matrix: List[List[int]]) -> int:
 
 <a name="merge"><h2>Merge</h2></a>
 На входе два отсортированных массива (списка), на выходе получить 1 отсортированный массив.
+
 Элементы списка это целые числа
 
+### Solution:
 ```python
 from typing import List, Generator
 
@@ -104,9 +108,12 @@ def merge(first: List[int], second: List[int]) -> List[int]:
 
 <a name="squares"><h2>Squares</h2></a>
 Дан отсортированный список в неубавющем порядке.
+
 Вернуть элементы этого списка возведенные в квадрат в неубывающем порядке
+
 Элементы списка это целые числа
 
+### Solution:
 ```python
 from typing import Iterable, List
 

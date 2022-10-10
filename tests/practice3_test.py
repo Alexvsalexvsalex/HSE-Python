@@ -19,6 +19,7 @@ class MarkdownTestCase(unittest.TestCase):
             self.assertEqual(
                 '<a name="main-title"><h2>Main title</h2></a>\n'
                 "D\n\n"
+                "### Solution:\n"
                 "```python\nsome_code```",
                 result
             )
@@ -45,9 +46,11 @@ class MarkdownTestCase(unittest.TestCase):
                 "+ [Main title2](#main-title2)\n\n"
                 '<a name="main-title1"><h2>Main title1</h2></a>\n'
                 "D1\n\n"
+                "### Solution:\n"
                 "```python\nsome_code1```\n\n"
                 '<a name="main-title2"><h2>Main title2</h2></a>\n'
                 "D2\n\n"
+                "### Solution:\n"
                 "```python\nsome_code2```",
                 result
             )
