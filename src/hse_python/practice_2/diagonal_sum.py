@@ -1,3 +1,7 @@
+# title Diagonal sum
+# description
+# Посчитать сумму диагональных элементов матрицы
+# end
 from typing import List
 
 from hse_python.errors import IllegalArgumentError
