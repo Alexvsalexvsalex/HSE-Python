@@ -1,3 +1,8 @@
+# title Merge
+# description
+# На входе два отсортированных массива (списка), на выходе получить 1 отсортированный массив.
+# Элементы списка это целые числа
+# end
 from typing import List, Generator
 
 from hse_python.errors import IllegalArgumentError

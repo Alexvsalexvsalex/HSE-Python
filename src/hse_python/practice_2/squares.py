@@ -1,3 +1,9 @@
+# title Squares
+# description
+# Дан отсортированный список в неубавющем порядке.
+# Вернуть элементы этого списка возведенные в квадрат в неубывающем порядке
+# Элементы списка это целые числа
+# end
 from typing import Iterable, List
 
 from hse_python.errors import IllegalArgumentError

@@ -1,3 +1,7 @@
+# title Compress
+# description
+# Сжать строку, заменив подотрезки одинаковых символов на пару <символ, число вхождений>
+# end
 from typing import List
 
 from hse_python.errors import IllegalArgumentError
