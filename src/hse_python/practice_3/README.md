@@ -84,7 +84,7 @@ def make_task_paragraph(task: Task) -> str:
 
 
 def generate_task_markdown(task: Task) -> str:
-    return f"{make_hyperlink(task.title)}\n\n{make_task_paragraph(task)}"
+    return make_task_paragraph(task)
 
 
 def generate_package_markdown(package_title: str, tasks: List[Task]) -> str:
@@ -104,7 +104,7 @@ def to_markdown(input_filepath: str, output_filepath: str) -> None:
 
 def to_markdown_package(input_package_path: str, output_filepath: str) -> None:
     tasks = []
-    for object_name in os.listdir(input_package_path):
+    for object_name in sorted(os.listdir(input_package_path)):
         object_path = os.path.join(input_package_path, object_name)
         if os.path.isfile(object_path):
             try:
