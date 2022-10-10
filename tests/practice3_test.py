@@ -25,19 +25,21 @@ class MarkdownTestCase(unittest.TestCase):
 
     def test_package_correctness(self):
         with TemporaryDirectory() as tmp_dir:
-            dir_name = os.path.basename(tmp_dir)
-            input1_filepath = os.path.join(tmp_dir, 'input1.py')
-            input2_filepath = os.path.join(tmp_dir, 'input2.py')
-            output_filepath = os.path.join(tmp_dir, 'output.md')
+            package_name = "my_package_1"
+            package_dir = os.path.join(tmp_dir, package_name)
+            os.mkdir(package_dir)
+            input1_filepath = os.path.join(package_dir, 'input1.py')
+            input2_filepath = os.path.join(package_dir, 'input2.py')
+            output_filepath = os.path.join(package_dir, 'output.md')
             with open(input1_filepath, "w") as input_file:
                 input_file.write("# title Main title1\n# description\n# D1\n# end\nsome_code1")
             with open(input2_filepath, "w") as input_file:
                 input_file.write("# title Main title2\n# description\n# D2\n# end\nsome_code2")
-            to_markdown_package(tmp_dir, output_filepath)
+            to_markdown_package(package_dir, output_filepath)
             with open(output_filepath, "r") as output_file:
                 result = output_file.read()
             self.assertEqual(
-                f"# {dir_name.title()}\n\n"
+                f"# My Package 1\n\n"
                 "## Table of contents\n"
                 "+ [Main title1](#main-title1)\n"
                 "+ [Main title2](#main-title2)\n\n"
