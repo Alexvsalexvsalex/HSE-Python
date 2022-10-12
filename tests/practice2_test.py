@@ -1,6 +1,6 @@
 import unittest
 from hse_python.practice_2 import *
-from hse_python.errors import IllegalArgumentError
+from hse_python.utils.errors import IllegalArgumentError
 
 
 class DiagonalSumTestCase(unittest.TestCase):

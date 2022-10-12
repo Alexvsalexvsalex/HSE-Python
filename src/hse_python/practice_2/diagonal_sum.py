@@ -4,8 +4,8 @@
 # end
 from typing import List
 
-from hse_python.errors import IllegalArgumentError
-from .array_utils import check_any_in_array
+from hse_python.utils.errors import IllegalArgumentError
+from hse_python.utils.array_utils import check_any_in_array
 
 
 def get_matrix_dimensions(matrix: List[List[int]]) -> (int, int):

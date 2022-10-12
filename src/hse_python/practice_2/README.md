@@ -13,8 +13,8 @@
 ```python
 from typing import List
 
-from hse_python.errors import IllegalArgumentError
-from .array_utils import ArrayIterator, check_any_in_array
+from hse_python.utils.errors import IllegalArgumentError
+from hse_python.utils.array_utils import ArrayIterator, check_any_in_array
 
 
 def compress(s: List[str]) -> str:
@@ -39,8 +39,8 @@ def compress(s: List[str]) -> str:
 ```python
 from typing import List
 
-from hse_python.errors import IllegalArgumentError
-from .array_utils import check_any_in_array
+from hse_python.utils.errors import IllegalArgumentError
+from hse_python.utils.array_utils import check_any_in_array
 
 
 def get_matrix_dimensions(matrix: List[List[int]]) -> (int, int):
@@ -80,8 +80,8 @@ def diagonal_sum(matrix: List[List[int]]) -> int:
 ```python
 from typing import List, Generator
 
-from hse_python.errors import IllegalArgumentError
-from .array_utils import ArrayIterator, check_all_in_array
+from hse_python.utils.errors import IllegalArgumentError
+from hse_python.utils.array_utils import ArrayIterator, check_all_in_array, is_sorted
 
 
 def merge_generator(*arrays: List[int]) -> Generator[int, None, None]:
@@ -94,10 +94,6 @@ def merge_generator(*arrays: List[int]) -> Generator[int, None, None]:
                 if minimum_index == -1 or iterators[minimum_index].get() > current_value:
                     minimum_index = i
         yield iterators[minimum_index].pop()
-
-
-def is_sorted(array: List[int]) -> bool:
-    return all(array[i] <= array[i + 1] for i in range(len(array) - 1))
 
 
 def merge(first: List[int], second: List[int]) -> List[int]:
@@ -117,9 +113,9 @@ def merge(first: List[int], second: List[int]) -> List[int]:
 ```python
 from typing import Iterable, List
 
-from hse_python.errors import IllegalArgumentError
-from .array_utils import split_array
-from .merge import merge, is_sorted
+from hse_python.utils.errors import IllegalArgumentError
+from hse_python.utils.array_utils import split_array, is_sorted
+from .merge import merge
 
 
 def squared_array(array: Iterable[int]) -> List[int]:

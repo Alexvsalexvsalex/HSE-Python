@@ -1,7 +1,7 @@
 import os
 import unittest
 from hse_python.practice_3 import *
-from hse_python.errors import WrongFileStructureError
+from hse_python.utils.errors import WrongFileStructureError
 
 from tempfile import TemporaryDirectory
 

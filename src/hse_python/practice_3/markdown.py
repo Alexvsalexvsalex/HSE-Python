@@ -15,10 +15,9 @@
 import argparse
 import logging
 import os
-import sys
 from typing import List, NamedTuple
 
-from hse_python.errors import WrongFileStructureError
+from hse_python.utils.errors import WrongFileStructureError
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
@@ -103,13 +102,17 @@ def generate_package_markdown(package_title: str, tasks: List[Task]) -> str:
 
 
 def to_markdown(input_filepath: str, output_filepath: str) -> None:
+    if output_filepath is None:
+        raise ValueError('File markdown transform require output file name')
     task = parse_source(input_filepath)
 
     with open(output_filepath, 'w') as output_file:
         output_file.write(generate_task_markdown(task))
 
 
-def to_markdown_package(input_package_path: str, output_filepath: str) -> None:
+def to_markdown_package(input_package_path: str, output_filepath: str = None) -> None:
+    if output_filepath is None:
+        output_filepath = os.path.join(input_package_path, 'README.md')
     tasks = []
     for object_name in sorted(os.listdir(input_package_path)):
         object_path = os.path.join(input_package_path, object_name)
@@ -124,6 +127,7 @@ def to_markdown_package(input_package_path: str, output_filepath: str) -> None:
         package_title = os.path.basename(input_package_path).replace('_', ' ').title()
         with open(output_filepath, 'w') as output_file:
             output_file.write(generate_package_markdown(package_title, tasks))
+        logging.info(f"{len(tasks)} tasks were parsed and added to output .md file")
     else:
         logging.warning("No correct task files found")
 
@@ -132,7 +136,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='''Application creates markdown file for solved tasks''')
     parser.add_argument('input_path', type=str, help='Path to file or package')
-    parser.add_argument('output_file', type=str, help='Output markdown file location')
+    parser.add_argument('output_file', nargs='?', default=None, type=str, help='Output markdown file location')
     args = parser.parse_args()
 
     input_path = args.input_path

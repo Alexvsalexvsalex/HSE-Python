@@ -46,3 +46,7 @@ def split_array(array: List[T], predicate: Callable[[T], bool]) -> (List[T], Lis
         else:
             lie_array.append(elem)
     return lie_array, truth_array
+
+
+def is_sorted(array: List[int]) -> bool:
+    return all(array[i] <= array[i + 1] for i in range(len(array) - 1))

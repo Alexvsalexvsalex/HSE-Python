@@ -8,9 +8,9 @@
 # end
 from typing import Iterable, List
 
-from hse_python.errors import IllegalArgumentError
-from .array_utils import split_array
-from .merge import merge, is_sorted
+from hse_python.utils.errors import IllegalArgumentError
+from hse_python.utils.array_utils import split_array, is_sorted
+from .merge import merge
 
 
 def squared_array(array: Iterable[int]) -> List[int]:
