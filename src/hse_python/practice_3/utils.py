@@ -15,7 +15,7 @@ def measure_time(logger: Logger):
             start = time.time()
             res = func(*args)
             end = time.time()
-            logger.info(f"Function `{func.__name__}` took " + str(round((end - start) * 1000)) + " ms")
+            logger.debug(f"Function `{func.__name__}` took " + str(round((end - start) * 1000)) + " ms")
             return res
         return wrapped
     return logged_function

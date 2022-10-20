@@ -52,7 +52,7 @@ def parse_package(input_package_path) -> List[Task]:
         try:
             task = parsing_task.result()
             tasks.append(task)
-            logger.info(f"Task `{task.title}` was successfully parsed")
+            logger.debug(f"Task `{task.title}` was successfully parsed")
         except RuntimeError as e:
             logger.warning(f"Parsing error: {e}")
     return tasks
@@ -67,7 +67,7 @@ def to_markdown_package(input_package_path: str, output_filepath: str = None) ->
         package_title = os.path.basename(input_package_path).replace('_', ' ').title()
         with open(output_filepath, 'w') as output_file:
             output_file.write(generate_package_markdown(package_title, tasks))
-        logger.info(f"{len(tasks)} tasks were parsed and added to output .md file")
+        logger.info(f"{len(tasks)} tasks in package `{package_title}` were parsed and added to output .md file")
     else:
         logger.warning("No correct task files found")
 
