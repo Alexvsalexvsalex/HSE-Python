@@ -69,6 +69,15 @@ class MarkdownTestCase(unittest.TestCase):
                 input_file.write("# title Main title\n# end\nsome_code")
             self.assertRaises(WrongFileStructureError, to_markdown, input_filepath, output_filepath)
 
+    def test_incorrect_package(self):
+        with TemporaryDirectory() as tmp_dir:
+            input_filepath = os.path.join(tmp_dir, 'no_description.py')
+            output_filepath = os.path.join(tmp_dir, 'output.md')
+            with open(input_filepath, "w") as input_file:
+                input_file.write("# title Main title\n# end\nsome_code")
+            to_markdown_package(tmp_dir)
+            self.assertFalse(os.path.exists(output_filepath))
+
 
 if __name__ == '__main__':
     unittest.main()
