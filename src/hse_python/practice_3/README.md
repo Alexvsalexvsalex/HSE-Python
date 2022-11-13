@@ -26,7 +26,8 @@ from typing import List
 
 from hse_python.practice_3.formatter import generate_task_markdown, generate_package_markdown
 from hse_python.practice_3.parser import parse_source
-from hse_python.practice_3.utils import Task, measure_time
+from hse_python.practice_3.utils import Task
+from hse_python.utils.decorators import measure_time
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 

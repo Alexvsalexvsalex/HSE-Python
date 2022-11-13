@@ -11,8 +11,12 @@ authors = [
 description = "Tasks from hse python course practices"
 readme = "README.md"
 requires-python = ">=3.6"
+dynamic = ["dependencies"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}

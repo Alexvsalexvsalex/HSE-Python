@@ -1,0 +1,6 @@
+LOGGING_LEVEL: 'INFO'
+LOGGING_FORMAT: '%(asctime)-15s | %(levelname)s | %(filename)s | %(lineno)d: %(message)s'
+
+IGNORING_WRONG_COLUMN_NUMBER: True
+OVERWRITE_OUTPUT_FILE: True
+CSV_DELIMITER: ","

@@ -4,3 +4,7 @@ class IllegalArgumentError(ValueError):
 
 class WrongFileStructureError(RuntimeError):
     pass
+
+
+class WrongCsvStructureError(RuntimeError):
+    pass
