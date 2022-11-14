@@ -2,7 +2,7 @@
 
 SOURCES="./src/hse_python"
 
-PRACTICE_DIRS=$(find -E $SOURCES -type d -regex ".*/practice\_[0-9]+")
+PRACTICE_DIRS=$(find -E $SOURCES -type d -regex ".*/practice\_[0-9_a-z]+")
 
 echo "These practice directories were found:"
 echo "$PRACTICE_DIRS"

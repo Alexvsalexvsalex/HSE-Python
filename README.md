@@ -9,3 +9,5 @@
 [Практика 3](./src/hse_python/practice_3)
 
 [Практика 7](./src/hse_python/practice_7)
+
+[Практика 7 (доп задание)](./src/hse_python/practice_7_ext)

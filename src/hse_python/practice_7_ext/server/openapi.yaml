@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  description: "Считатель денег"
+  title: Salary calculator
+  version: "1.0"
+paths:
+  /calc_salary:
+    get:
+      description: Посчитать зарплату
+      parameters:
+        - description: Год
+          in: query
+          name: year
+          required: true
+          schema:
+            type: integer
+        - description: Месяц
+          in: query
+          name: month
+          required: true
+          schema:
+            type: integer
+        - description: Месячная зарплата
+          in: query
+          name: salary
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Посчитанная зарплата.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SalaryResponse"
+        "400":
+          description: Невалидный запрос.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorQuery"
+components:
+  schemas:
+    SalaryResponse:
+      type: object
+      required:
+          - year
+          - month
+          - salary
+          - hour_income
+      properties:
+        year:
+          description: Год
+          nullable: false
+          type: integer
+        month:
+          description: Месяц
+          nullable: false
+          type: integer
+        salary:
+          description: Зарплата
+          nullable: false
+          type: integer
+        hour_income:
+          description: Почасовая ставка.
+          nullable: false
+          type: number
+    ErrorQuery:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          nullable: false
+          type: integer
+        message:
+          nullable: false
+          type: string
