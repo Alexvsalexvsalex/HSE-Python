@@ -49,10 +49,10 @@ class TaskManagerTestCase(unittest.TestCase):
         task2 = Task(name="name2", description="description2")
         task_manager.create_task(task1)
         task_manager.create_task(task2)
-        task1.mark_in_working()
-        task2.mark_in_working()
+        task1.mark_in_progress()
+        task2.mark_in_progress()
         task2.mark_done()
-        self.assertEqual(task_manager.get_tasks_by_id(task1.id).status, TaskStatus.IN_WORKING)
+        self.assertEqual(task_manager.get_tasks_by_id(task1.id).status, TaskStatus.IN_PROGRESS)
         self.assertEqual(task_manager.get_tasks_by_id(task2.id).status, TaskStatus.DONE)
 
     def test_complex_tasks(self):
@@ -65,7 +65,7 @@ class TaskManagerTestCase(unittest.TestCase):
         task_manager.create_subtask(task2)
         task0.add_subtask(task1)
         task0.add_subtask(task2)
-        task0.mark_in_working()
+        task0.mark_in_progress()
         task0.mark_done()
         self.assertEqual(task_manager.get_complex_tasks_by_id(task0.id).status, TaskStatus.DONE)
         self.assertEqual(task_manager.get_subtasks_by_id(task1.id).status, TaskStatus.DONE)

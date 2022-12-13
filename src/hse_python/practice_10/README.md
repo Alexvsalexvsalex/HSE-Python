@@ -1,8 +1,14 @@
-# title Task manager
-# description
-# Трекер задач, поддерживающие обычные задачи, а также сложные (имеются подзадачи)
-# Каждая задача имеет статус `OPEN`, `IN_PROGRESS` или `DONE`
-# end
+# Practice 10
+
+## Table of contents
++ [Task manager](#task-manager)
+
+<a name="task-manager"><h2>Task manager</h2></a>
+Трекер задач, поддерживающие обычные задачи, а также сложные (имеются подзадачи)
+Каждая задача имеет статус `OPEN`, `IN_PROGRESS` или `DONE`
+
+### Solution:
+```python
 from typing import Dict, Generic, TypeVar
 
 from hse_python.practice_10.task import Task, Subtask, ComplexTask
@@ -115,3 +121,4 @@ class TaskManager:
     @staticmethod
     def mark_done(task: Task):
         return task.mark_done()
+```

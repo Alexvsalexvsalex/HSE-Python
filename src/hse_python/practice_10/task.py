@@ -5,7 +5,7 @@ from hse_python.utils.errors import WrongTaskStatusError, WrongSubtaskError
 
 class TaskStatus(enum.Enum):
     OPEN = 1
-    IN_WORKING = 2
+    IN_PROGRESS = 2
     DONE = 3
 
 
@@ -16,14 +16,14 @@ class Task:
         self.description = description
         self.status = TaskStatus.OPEN
 
-    def mark_in_working(self):
+    def mark_in_progress(self):
         if self.status == TaskStatus.OPEN:
-            self.status = TaskStatus.IN_WORKING
+            self.status = TaskStatus.IN_PROGRESS
         else:
             raise WrongTaskStatusError()
 
     def mark_done(self):
-        if self.status == TaskStatus.IN_WORKING:
+        if self.status == TaskStatus.IN_PROGRESS:
             self.status = TaskStatus.DONE
         else:
             raise WrongTaskStatusError()
@@ -45,10 +45,10 @@ class ComplexTask(Task):
             raise WrongSubtaskError(f"Subtask has incorrect parent id: {self.id} != {subtask.parent_id}")
         self.subtasks.append(subtask)
 
-    def mark_in_working(self):
-        super().mark_in_working()
+    def mark_in_progress(self):
+        super().mark_in_progress()
         for subtask in self.subtasks:
-            subtask.mark_in_working()
+            subtask.mark_in_progress()
 
     def mark_done(self):
         super().mark_done()

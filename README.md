@@ -11,3 +11,7 @@
 [Практика 7](./src/hse_python/practice_7)
 
 [Практика 7 (доп задание)](./src/hse_python/practice_7_ext)
+
+[Практика 9](./src/hse_python/practice_9)
+
+[Практика 10](./src/hse_python/practice_10)
