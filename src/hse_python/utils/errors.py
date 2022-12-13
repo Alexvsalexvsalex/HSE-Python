@@ -2,9 +2,25 @@ class IllegalArgumentError(ValueError):
     pass
 
 
-class WrongFileStructureError(RuntimeError):
+class CsvConverterError(RuntimeError):
     pass
 
 
-class WrongCsvStructureError(RuntimeError):
+class WrongFileStructureError(CsvConverterError):
+    pass
+
+
+class WrongCsvStructureError(CsvConverterError):
+    pass
+
+
+class TaskManagerError(RuntimeError):
+    pass
+
+
+class WrongSubtaskError(TaskManagerError):
+    pass
+
+
+class WrongTaskStatusError(TaskManagerError):
     pass
