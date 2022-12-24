@@ -17,3 +17,5 @@
 [Практика 10](./src/hse_python/practice_10)
 
 [Практика 11](./src/hse_python/practice_11)
+
+[Экзамен](./src/hse_python/exam)
